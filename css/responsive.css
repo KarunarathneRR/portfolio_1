@@ -1,0 +1,287 @@
+/* ================================
+   RESPONSIVE DESIGN
+   ================================ */
+
+/* Touch device support */
+@media (hover: none) and (pointer: coarse) {
+    .work-button:active,
+    .project-card:active,
+    .social-link:active {
+        transform: scale(0.95);
+        transition: transform 0.1s ease;
+    }
+
+    .work-button:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .project-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .social-link:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    /* Disable complex animations on mobile for better performance */
+    .geometric-shape {
+        animation: float 3s ease-in-out infinite alternate;
+    }
+
+    .hero-text .highlight {
+        animation: none;
+        background: linear-gradient(45deg, #00d4aa, #00a0ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+}
+
+/* Tablet Styles */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 30px;
+    }
+
+    .nav-container {
+        padding: 0 30px;
+    }
+
+    .hero-content {
+        gap: 60px;
+    }
+
+    .hero-text h1 {
+        font-size: 3rem;
+    }
+
+    .geometric-shape {
+        width: 350px;
+        height: 350px;
+    }
+
+    .about-content {
+        gap: 60px;
+    }
+
+    .credentials-grid {
+        gap: 60px;
+    }
+
+    .projects-grid {
+        gap: 25px;
+    }
+
+    .project-card {
+        width: 320px;
+    }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    .nav-container {
+        padding: 0 20px;
+    }
+
+    .nav-menu {
+        display: none;
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    .hero {
+        min-height: 100vh;
+        padding-top: 120px;
+        text-align: center;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-text .subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+    }
+
+    .geometric-shape {
+        width: 280px;
+        height: 280px;
+    }
+
+    .about {
+        padding: 80px 0;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .about h2 {
+        font-size: 2rem;
+    }
+
+    .about-image {
+        width: 250px;
+        height: 300px;
+        margin: 0 auto;
+    }
+
+    .credentials {
+        padding: 80px 0;
+    }
+
+    .credentials h2 {
+        font-size: 2rem;
+    }
+
+    .credentials-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .projects {
+        padding: 80px 0;
+    }
+
+    .projects h2 {
+        font-size: 2rem;
+    }
+
+    .projects-grid {
+        gap: 20px;
+    }
+
+    .project-card {
+        width: 300px;
+    }
+
+    .contact {
+        padding: 80px 0;
+    }
+
+    .contact h2 {
+        font-size: 2rem;
+    }
+
+    .contact-info {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .social-links {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+/* Small Mobile Styles */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .nav-container {
+        padding: 0 15px;
+    }
+
+    .hero {
+        padding-top: 100px;
+    }
+
+    .hero-text h1 {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+
+    .hero-text .subtitle {
+        font-size: 1rem;
+    }
+
+    .geometric-shape {
+        width: 220px;
+        height: 220px;
+    }
+
+    .about h2,
+    .credentials h2,
+    .projects h2,
+    .contact h2 {
+        font-size: 1.8rem;
+    }
+
+    .about-image {
+        width: 200px;
+        height: 250px;
+    }
+
+    .project-card {
+        width: 280px;
+    }
+
+    .project-info {
+        padding: 20px;
+    }
+
+    .skills-list {
+        justify-content: center;
+    }
+
+    .skill-tag {
+        font-size: 0.8rem;
+        padding: 3px 10px;
+    }
+
+    .social-links {
+        gap: 15px;
+    }
+
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
+/* Extra Small Mobile Styles */
+@media (max-width: 360px) {
+    .hero-text h1 {
+        font-size: 1.8rem;
+    }
+
+    .geometric-shape {
+        width: 180px;
+        height: 180px;
+    }
+
+    .about-image {
+        width: 180px;
+        height: 220px;
+    }
+
+    .project-card {
+        width: 260px;
+    }
+
+    .mobile-nav {
+        width: 280px;
+    }
+}

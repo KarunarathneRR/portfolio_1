@@ -1,0 +1,301 @@
+/* ================================
+   ANIMATIONS & KEYFRAMES
+   ================================ */
+
+/* Keyframe Animations */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% { 
+        transform: scale(1); 
+    }
+    100% { 
+        transform: scale(1.05); 
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes colorShift {
+    0%, 100% { 
+        background-position: 0% 50%; 
+    }
+    50% { 
+        background-position: 100% 50%; 
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to { 
+        opacity: 1; 
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes rotate {
+    from { 
+        transform: rotate(0deg); 
+    }
+    to { 
+        transform: rotate(360deg); 
+    }
+}
+
+@keyframes float {
+    0% { 
+        transform: translateY(0px); 
+    }
+    100% { 
+        transform: translateY(-20px); 
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animation Classes */
+.fade-in-up {
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+/* Element-specific Animations */
+.hero-text {
+    animation: slideInLeft 1s ease-out;
+}
+
+.hero-visual {
+    animation: slideInRight 1s ease-out 0.3s both;
+}
+
+.hero-text .highlight {
+    animation: colorShift 3s ease-in-out infinite;
+}
+
+.hero-text .subtitle {
+    animation: fadeIn 1s ease-out 0.5s forwards;
+}
+
+.work-button {
+    animation: slideUp 1s ease-out 1s forwards;
+}
+
+.logo {
+    animation: pulse 2s ease-in-out infinite alternate;
+}
+
+.header {
+    animation: slideDown 1s ease-out 0.5s forwards;
+}
+
+.geometric-shape {
+    animation: rotate 20s linear infinite, float 3s ease-in-out infinite alternate;
+}
+
+/* Transition Properties for Interactive Elements */
+.nav-menu li a {
+    transition: color 0.3s ease;
+}
+
+.nav-menu li a::after {
+    transition: width 0.3s ease;
+}
+
+.mobile-menu-toggle span {
+    transition: all 0.3s ease;
+}
+
+.mobile-nav {
+    transition: right 0.3s ease;
+}
+
+.mobile-nav ul li a {
+    transition: color 0.3s ease;
+}
+
+.work-button {
+    transition: all 0.3s ease;
+}
+
+.work-button::before {
+    transition: left 0.5s;
+}
+
+.about h2 {
+    transition: all 0.8s ease-out;
+}
+
+.about-text {
+    transition: all 0.8s ease-out 0.2s;
+}
+
+.about-image {
+    transition: all 0.8s ease-out 0.4s;
+}
+
+.about-image::before {
+    transition: opacity 0.3s ease;
+}
+
+.credentials h2 {
+    transition: all 0.8s ease-out;
+}
+
+.credential-item {
+    transition: all 0.6s ease-out;
+}
+
+.projects h2 {
+    transition: all 0.8s ease-out;
+}
+
+.project-card {
+    transition: all 0.6s ease-out;
+}
+
+.project-image::before {
+    transition: left 0.5s;
+}
+
+.contact h2 {
+    transition: all 0.8s ease-out;
+}
+
+.contact-info {
+    transition: all 0.8s ease-out 0.2s;
+}
+
+.contact-email::before {
+    transition: left 0.3s;
+}
+
+.social-links {
+    transition: all 0.8s ease-out 0.4s;
+}
+
+.social-link {
+    transition: all 0.3s ease;
+}
+
+.social-link::before {
+    transition: transform 0.3s ease;
+}
+
+.scroll-progress {
+    transition: width 0.1s ease;
+}
+
+/* Section Animation Transitions */
+section {
+    transition: all 1s ease-in-out;
+}
+
+/* Project Card Animation Delays */
+.projects.animate .project-card:nth-child(1) { 
+    transition-delay: 0.1s; 
+}
+
+.projects.animate .project-card:nth-child(2) { 
+    transition-delay: 0.2s; 
+}
+
+.projects.animate .project-card:nth-child(3) { 
+    transition-delay: 0.3s; 
+}
+
+.projects.animate .project-card:nth-child(4) { 
+    transition-delay: 0.4s; 
+}
+
+.projects.animate .project-card:nth-child(5) { 
+    transition-delay: 0.5s; 
+}
+
+.projects.animate .project-card:nth-child(6) { 
+    transition-delay: 0.6s; 
+}
+
+/* Credential Item Animation Delays */
+.credentials.animate .credential-item:nth-child(1) { 
+    transition-delay: 0.1s; 
+}
+
+.credentials.animate .credential-item:nth-child(2) { 
+    transition-delay: 0.2s; 
+}
+
+.credentials.animate .credential-item:nth-child(3) { 
+    transition-delay: 0.3s; 
+}
+
+/* Performance Optimizations for Mobile */
+@media (max-width: 768px) {
+    /* Reduce animation complexity on mobile */
+    .geometric-shape {
+        animation: float 3s ease-in-out infinite alternate;
+    }
+    
+    .hero-text .highlight {
+        animation-duration: 6s; /* Slower animation on mobile */
+    }
+    
+    /* Reduce transform animations on mobile for better performance */
+    .project-card:hover {
+        transform: none;
+    }
+    
+    .social-link:hover {
+        transform: none;
+    }
+    
+    .work-button:hover {
+        transform: none;
+    }
+}
