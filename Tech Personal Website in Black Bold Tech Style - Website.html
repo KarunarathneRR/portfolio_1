@@ -22,6 +22,8 @@
             color: #fff;
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .container {
@@ -66,6 +68,115 @@
             animation: pulse 2s ease-in-out infinite alternate;
         }
 
+        /* Navigation Menu */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu li a:hover {
+            color: #00d4aa;
+        }
+
+        .nav-menu li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00d4aa, #00a0ff);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu li a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            padding: 100px 30px 30px;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-nav ul li {
+            margin: 25px 0;
+        }
+
+        .mobile-nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            display: block;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav ul li a:hover {
+            color: #00d4aa;
+        }
+
         @keyframes pulse {
             0% { transform: scale(1); }
             100% { transform: scale(1.05); }
@@ -74,6 +185,7 @@
         /* Hero Section */
         .hero {
             min-height: 100vh;
+            min-height: calc(var(--vh, 1vh) * 100);
             display: flex;
             align-items: center;
             position: relative;
@@ -179,6 +291,44 @@
             background: rgba(0, 212, 170, 0.1);
             transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(0, 212, 170, 0.3);
+        }
+
+        /* Touch device support */
+        @media (hover: none) and (pointer: coarse) {
+            .work-button:active,
+            .project-card:active,
+            .social-link:active {
+                transform: scale(0.95);
+                transition: transform 0.1s ease;
+            }
+
+            .work-button:hover {
+                transform: none;
+                box-shadow: none;
+            }
+
+            .project-card:hover {
+                transform: none;
+                box-shadow: none;
+            }
+
+            .social-link:hover {
+                transform: none;
+                box-shadow: none;
+            }
+
+            /* Disable complex animations on mobile for better performance */
+            .geometric-shape {
+                animation: float 3s ease-in-out infinite alternate;
+            }
+
+            .hero-text .highlight {
+                animation: none;
+                background: linear-gradient(45deg, #00d4aa, #00a0ff);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
         }
 
         @keyframes slideUp {
@@ -445,9 +595,32 @@
         }
 
         .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            display: flex;
             gap: 30px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 20px 0;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scroll-snap-type: x mandatory;
+        }
+
+        .projects-grid::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .projects-grid::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .projects-grid::-webkit-scrollbar-thumb {
+            background: linear-gradient(90deg, #00d4aa, #00a0ff);
+            border-radius: 4px;
+        }
+
+        .projects-grid::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(90deg, #00a0ff, #00d4aa);
         }
 
         .project-card {
@@ -458,6 +631,9 @@
             opacity: 0;
             transform: translateY(50px) scale(0.9);
             transition: all 0.6s ease-out;
+            width: 350px;
+            flex-shrink: 0;
+            scroll-snap-align: start;
         }
 
         .projects.animate .project-card:nth-child(1) { transition-delay: 0.1s; }
@@ -676,6 +852,253 @@
             z-index: 9999;
             transition: width 0.1s ease;
         }
+
+        /* Responsive Design */
+        /* Tablet Styles */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 30px;
+            }
+
+            .nav-container {
+                padding: 0 30px;
+            }
+
+            .hero-content {
+                gap: 60px;
+            }
+
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+
+            .geometric-shape {
+                width: 350px;
+                height: 350px;
+            }
+
+            .about-content {
+                gap: 60px;
+            }
+
+            .credentials-grid {
+                gap: 60px;
+            }
+
+            .projects-grid {
+                gap: 25px;
+            }
+
+            .project-card {
+                width: 320px;
+            }
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .nav-container {
+                padding: 0 20px;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .hero {
+                min-height: 100vh;
+                padding-top: 120px;
+                text-align: center;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-text .subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 30px;
+            }
+
+            .geometric-shape {
+                width: 280px;
+                height: 280px;
+            }
+
+            .about {
+                padding: 80px 0;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .about h2 {
+                font-size: 2rem;
+            }
+
+            .about-image {
+                width: 250px;
+                height: 300px;
+                margin: 0 auto;
+            }
+
+            .credentials {
+                padding: 80px 0;
+            }
+
+            .credentials h2 {
+                font-size: 2rem;
+            }
+
+            .credentials-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .projects {
+                padding: 80px 0;
+            }
+
+            .projects h2 {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                gap: 20px;
+            }
+
+            .project-card {
+                width: 300px;
+            }
+
+            .contact {
+                padding: 80px 0;
+            }
+
+            .contact h2 {
+                font-size: 2rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+
+        /* Small Mobile Styles */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .nav-container {
+                padding: 0 15px;
+            }
+
+            .hero {
+                padding-top: 100px;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+
+            .hero-text .subtitle {
+                font-size: 1rem;
+            }
+
+            .geometric-shape {
+                width: 220px;
+                height: 220px;
+            }
+
+            .about h2,
+            .credentials h2,
+            .projects h2,
+            .contact h2 {
+                font-size: 1.8rem;
+            }
+
+            .about-image {
+                width: 200px;
+                height: 250px;
+            }
+
+            .project-card {
+                width: 280px;
+            }
+
+            .project-info {
+                padding: 20px;
+            }
+
+            .skills-list {
+                justify-content: center;
+            }
+
+            .skill-tag {
+                font-size: 0.8rem;
+                padding: 3px 10px;
+            }
+
+            .social-links {
+                gap: 15px;
+            }
+
+            .social-link {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Extra Small Mobile Styles */
+        @media (max-width: 360px) {
+            .hero-text h1 {
+                font-size: 1.8rem;
+            }
+
+            .geometric-shape {
+                width: 180px;
+                height: 180px;
+            }
+
+            .about-image {
+                width: 180px;
+                height: 220px;
+            }
+
+            .project-card {
+                width: 260px;
+            }
+
+            .mobile-nav {
+                width: 280px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -686,11 +1109,34 @@
     <header class="header">
         <div class="nav-container">
             <div class="logo">R</div>
+            <nav class="nav-menu">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#credentials">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </nav>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </header>
 
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#credentials">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
     <!-- Hero Section -->
-    <section class="hero">
+    <section id="hero" class="hero">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
@@ -862,10 +1308,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Additional Projects -->
-            <div class="projects-grid" style="margin-top: 30px;">
                 <div class="project-card">
                     <div class="project-image" style="background: linear-gradient(135deg, #a8edea, #fed6e3);"></div>
                     <div class="project-info">
@@ -973,23 +1415,26 @@
             observer.observe(section);
         });
 
-        // Parallax effect for geometric shape
-        window.addEventListener('scroll', () => {
+        // Parallax effect for geometric shape (reduced on mobile)
+        let ticking = false;
+        function updateParallax() {
             const scrolled = window.pageYOffset;
             const parallax = document.querySelector('.geometric-shape');
             if (parallax) {
-                const speed = scrolled * 0.3;
-                parallax.style.transform = `translateY(${speed}px) rotate(${scrolled * 0.1}deg)`;
+                // Reduce parallax effect on mobile for better performance
+                const isMobile = window.innerWidth <= 768;
+                const speed = isMobile ? scrolled * 0.1 : scrolled * 0.3;
+                const rotation = isMobile ? scrolled * 0.05 : scrolled * 0.1;
+                parallax.style.transform = `translateY(${speed}px) rotate(${rotation}deg)`;
             }
+            ticking = false;
+        }
 
-            // Parallax for background elements
-            const sections = document.querySelectorAll('section::before');
-            sections.forEach((section, index) => {
-                if (section) {
-                    const speed = scrolled * (0.1 + index * 0.05);
-                    section.style.transform = `translateY(${speed}px)`;
-                }
-            });
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
         });
 
         // Smooth scrolling for navigation links
@@ -1043,36 +1488,40 @@
             textObserver.observe(heading);
         });
 
-        // Mouse cursor trail effect
-        const cursor = document.createElement('div');
-        cursor.style.cssText = `
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            background: radial-gradient(circle, rgba(0, 212, 170, 0.8), transparent);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease;
-            mix-blend-mode: difference;
-        `;
-        document.body.appendChild(cursor);
+        // Mouse cursor trail effect (desktop only)
+        const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        
+        if (!isTouch) {
+            const cursor = document.createElement('div');
+            cursor.style.cssText = `
+                position: fixed;
+                width: 20px;
+                height: 20px;
+                background: radial-gradient(circle, rgba(0, 212, 170, 0.8), transparent);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9999;
+                transition: transform 0.1s ease;
+                mix-blend-mode: difference;
+            `;
+            document.body.appendChild(cursor);
 
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX - 10 + 'px';
-            cursor.style.top = e.clientY - 10 + 'px';
-        });
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX - 10 + 'px';
+                cursor.style.top = e.clientY - 10 + 'px';
+            });
 
-        // Add hover effects to interactive elements
-        document.querySelectorAll('a, button, .project-card').forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'scale(2)';
+            // Add hover effects to interactive elements
+            document.querySelectorAll('a, button, .project-card').forEach(element => {
+                element.addEventListener('mouseenter', () => {
+                    cursor.style.transform = 'scale(2)';
+                });
+                
+                element.addEventListener('mouseleave', () => {
+                    cursor.style.transform = 'scale(1)';
+                });
             });
-            
-            element.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'scale(1)';
-            });
-        });
+        }
 
         // Scroll-triggered counter animation
         const animateCounters = () => {
@@ -1100,6 +1549,47 @@
         window.addEventListener('load', () => {
             document.body.classList.add('loaded');
         });
+
+        // Mobile menu functionality
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenuToggle.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuToggle.classList.remove('active');
+                mobileNav.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileNav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                mobileMenuToggle.classList.remove('active');
+                mobileNav.classList.remove('active');
+            }
+        });
+
+        // Handle orientation changes on mobile
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => {
+                // Close mobile menu on orientation change
+                mobileMenuToggle.classList.remove('active');
+                mobileNav.classList.remove('active');
+                
+                // Recalculate viewport height for mobile browsers
+                document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+            }, 100);
+        });
+
+        // Set initial viewport height
+        document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
     </script>
 </body>
 </html>
