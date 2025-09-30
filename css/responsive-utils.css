@@ -1,0 +1,343 @@
+/* ================================
+   RESPONSIVE UTILITIES
+   ================================ */
+
+/* Viewport height calculation for mobile browsers */
+:root {
+    --vh: 1vh;
+}
+
+/* Dynamic viewport calculation using JavaScript */
+@supports (height: 100dvh) {
+    :root {
+        --vh: 1dvh;
+    }
+}
+
+/* Base responsive utilities */
+.responsive-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(15px, 4vw, 40px);
+}
+
+/* Responsive typography using clamp() */
+.responsive-text {
+    font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+    line-height: 1.6;
+}
+
+.responsive-heading {
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    line-height: 1.2;
+}
+
+.responsive-subheading {
+    font-size: clamp(1.25rem, 4vw, 2rem);
+    line-height: 1.3;
+}
+
+/* Responsive spacing utilities */
+.spacing-xs { padding: clamp(0.5rem, 2vw, 1rem); }
+.spacing-sm { padding: clamp(1rem, 3vw, 1.5rem); }
+.spacing-md { padding: clamp(1.5rem, 4vw, 2.5rem); }
+.spacing-lg { padding: clamp(2rem, 6vw, 4rem); }
+.spacing-xl { padding: clamp(3rem, 8vw, 6rem); }
+
+/* Margin utilities */
+.margin-xs { margin: clamp(0.5rem, 2vw, 1rem); }
+.margin-sm { margin: clamp(1rem, 3vw, 1.5rem); }
+.margin-md { margin: clamp(1.5rem, 4vw, 2.5rem); }
+.margin-lg { margin: clamp(2rem, 6vw, 4rem); }
+.margin-xl { margin: clamp(3rem, 8vw, 6rem); }
+
+/* Gap utilities for flexbox and grid */
+.gap-xs { gap: clamp(0.5rem, 2vw, 1rem); }
+.gap-sm { gap: clamp(1rem, 3vw, 1.5rem); }
+.gap-md { gap: clamp(1.5rem, 4vw, 2.5rem); }
+.gap-lg { gap: clamp(2rem, 6vw, 4rem); }
+.gap-xl { gap: clamp(3rem, 8vw, 6rem); }
+
+/* Responsive grid utilities */
+.grid-auto-fit {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+    gap: clamp(1rem, 3vw, 2rem);
+}
+
+.grid-auto-fill {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr));
+    gap: clamp(1rem, 3vw, 2rem);
+}
+
+/* Responsive flexbox utilities */
+.flex-responsive {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(1rem, 3vw, 2rem);
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.flex-around {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+/* Content overflow and text handling */
+.text-overflow-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.word-break {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.preserve-line-breaks {
+    white-space: pre-line;
+}
+
+/* Responsive image utilities */
+.img-responsive {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.img-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.img-contain {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+/* Aspect ratio utilities */
+.aspect-square {
+    aspect-ratio: 1 / 1;
+}
+
+.aspect-video {
+    aspect-ratio: 16 / 9;
+}
+
+.aspect-4-3 {
+    aspect-ratio: 4 / 3;
+}
+
+.aspect-3-2 {
+    aspect-ratio: 3 / 2;
+}
+
+/* Responsive visibility utilities */
+.hide-mobile {
+    display: block;
+}
+
+.hide-tablet {
+    display: block;
+}
+
+.hide-desktop {
+    display: block;
+}
+
+.show-mobile {
+    display: none;
+}
+
+.show-tablet {
+    display: none;
+}
+
+.show-desktop {
+    display: none;
+}
+
+/* Mobile visibility */
+@media (max-width: 768px) {
+    .hide-mobile {
+        display: none !important;
+    }
+    
+    .show-mobile {
+        display: block !important;
+    }
+    
+    .show-mobile-flex {
+        display: flex !important;
+    }
+    
+    .show-mobile-grid {
+        display: grid !important;
+    }
+}
+
+/* Tablet visibility */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hide-tablet {
+        display: none !important;
+    }
+    
+    .show-tablet {
+        display: block !important;
+    }
+    
+    .show-tablet-flex {
+        display: flex !important;
+    }
+    
+    .show-tablet-grid {
+        display: grid !important;
+    }
+}
+
+/* Desktop visibility */
+@media (min-width: 1025px) {
+    .hide-desktop {
+        display: none !important;
+    }
+    
+    .show-desktop {
+        display: block !important;
+    }
+    
+    .show-desktop-flex {
+        display: flex !important;
+    }
+    
+    .show-desktop-grid {
+        display: grid !important;
+    }
+}
+
+/* Responsive text alignment */
+.text-left-mobile {
+    text-align: left;
+}
+
+.text-center-mobile {
+    text-align: center;
+}
+
+.text-right-mobile {
+    text-align: right;
+}
+
+@media (max-width: 768px) {
+    .text-left-mobile {
+        text-align: left !important;
+    }
+    
+    .text-center-mobile {
+        text-align: center !important;
+    }
+    
+    .text-right-mobile {
+        text-align: right !important;
+    }
+}
+
+/* Touch-friendly utilities */
+.touch-target {
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.touch-friendly {
+    padding: 12px;
+    margin: 4px;
+}
+
+/* Performance optimizations for mobile */
+@media (max-width: 768px) {
+    .reduce-motion {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .disable-scroll-effects {
+        transform: none !important;
+    }
+}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .respect-motion-preference {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        transform: none !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .high-contrast {
+        border: 2px solid currentColor;
+    }
+}
+
+/* Dark mode utilities */
+@media (prefers-color-scheme: dark) {
+    .dark-mode-text {
+        color: #ffffff;
+    }
+    
+    .dark-mode-bg {
+        background-color: #1a1a1a;
+    }
+}
+
+/* Print styles */
+@media print {
+    .print-hidden {
+        display: none !important;
+    }
+    
+    .print-block {
+        display: block !important;
+    }
+    
+    .print-break-before {
+        page-break-before: always;
+    }
+    
+    .print-break-after {
+        page-break-after: always;
+    }
+    
+    .print-no-break {
+        page-break-inside: avoid;
+    }
+}

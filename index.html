@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/responsive-utils.css">\n    <link rel="stylesheet" href="css/responsive-fixes.css">
 </head>
 <body>
     <!-- Scroll Progress Bar -->
@@ -23,5 +24,42 @@
 
     <script src="js/section-loader.js"></script>
     <script src="js/script.js"></script>
+    
+    <!-- Viewport height handling for mobile browsers -->
+    <script>
+        // Set CSS custom property for viewport height
+        function setViewportHeight() {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+        
+        // Set on load and resize
+        setViewportHeight();
+        window.addEventListener('resize', setViewportHeight);
+        window.addEventListener('orientationchange', function() {
+            setTimeout(setViewportHeight, 100);
+        });
+        
+        // Add responsive classes based on screen size
+        function updateResponsiveClasses() {
+            const width = window.innerWidth;
+            const body = document.body;
+            
+            // Remove existing classes
+            body.classList.remove('is-mobile', 'is-tablet', 'is-desktop');
+            
+            // Add appropriate class
+            if (width <= 768) {
+                body.classList.add('is-mobile');
+            } else if (width <= 1024) {
+                body.classList.add('is-tablet');
+            } else {
+                body.classList.add('is-desktop');
+            }
+        }
+        
+        updateResponsiveClasses();
+        window.addEventListener('resize', updateResponsiveClasses);
+    </script>
 </body>
 </html>

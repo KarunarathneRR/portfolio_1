@@ -1,0 +1,288 @@
+/* ================================
+   COMPREHENSIVE RESPONSIVE FIXES
+   ================================ */
+
+/* Fix missing h2 styles for all sections */
+.about h2,
+.credentials h2,
+.projects h2,
+.contact h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 600;
+    margin-bottom: clamp(20px, 4vw, 30px);
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: all 0.8s ease-out;
+    word-wrap: break-word;
+    line-height: 1.2;
+}
+
+.about.animate h2,
+.credentials.animate h2,
+.projects.animate h2,
+.contact.animate h2 {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Enhanced mobile-first responsive grid fixes */
+@media (max-width: 768px) {
+    .about-content,
+    .credentials-grid {
+        grid-template-columns: 1fr !important;
+        gap: clamp(30px, 5vw, 50px) !important;
+        text-align: center;
+    }
+    
+    .about-image {
+        order: -1;
+        width: min(250px, 80vw);
+        height: min(300px, 60vh);
+        margin: 0 auto 20px;
+    }
+    
+    .about-text {
+        text-align: left;
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+    }
+    
+    .credential-section {
+        text-align: center;
+    }
+    
+    .skills-list {
+        justify-content: center;
+    }
+    
+    .contact-info {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .contact-email {
+        word-break: break-all;
+        font-size: clamp(1rem, 3vw, 1.2rem);
+    }
+    
+    .social-links {
+        justify-content: center;
+        max-width: 100%;
+    }
+}
+
+/* Fix project cards responsiveness */
+@media (max-width: 768px) {
+    .projects-grid {
+        justify-content: flex-start;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        padding: 20px 5px;
+    }
+    
+    .project-card {
+        width: clamp(260px, 85vw, 300px);
+        min-width: clamp(260px, 85vw, 300px);
+        scroll-snap-align: start;
+    }
+    
+    .project-info {
+        padding: clamp(15px, 4vw, 25px);
+    }
+    
+    .project-title {
+        font-size: clamp(1rem, 3vw, 1.2rem);
+        line-height: 1.3;
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    .project-description {
+        font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+        line-height: 1.5;
+    }
+}
+
+/* Fix extra small mobile devices */
+@media (max-width: 360px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    .project-card {
+        width: calc(100vw - 40px);
+        min-width: calc(100vw - 40px);
+    }
+    
+    .hero-text h1 {
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+    
+    .work-button {
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto;
+        display: flex;
+    }
+    
+    .social-links {
+        gap: 10px;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
+/* Fix landscape orientation on mobile */
+@media (max-height: 500px) and (orientation: landscape) and (max-width: 1024px) {
+    .hero {
+        padding-top: 70px;
+        min-height: 100vh;
+    }
+    
+    .hero-content {
+        grid-template-columns: 1.2fr 1fr;
+        gap: 20px;
+        align-items: center;
+    }
+    
+    .hero-visual {
+        height: 250px;
+    }
+    
+    .geometric-shape {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .about,
+    .credentials,
+    .projects,
+    .contact {
+        padding: 60px 0;
+    }
+}
+
+/* Fix text overflow and wrapping issues */
+.credential-value,
+.about-text,
+.project-description {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Improve touch targets on mobile */
+@media (hover: none) and (pointer: coarse) {
+    .work-button,
+    .social-link,
+    .nav-menu a,
+    .mobile-nav a {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 12px;
+    }
+    
+    .mobile-nav ul li a {
+        padding: 15px 20px;
+        font-size: 1.1rem;
+    }
+}
+
+/* Fix viewport height issues on mobile browsers */
+.hero {
+    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
+}
+
+/* Enhanced scrolling for project grid */
+.projects-grid {
+    scrollbar-width: thin;
+    scrollbar-color: #00d4aa rgba(255, 255, 255, 0.1);
+}
+
+.projects-grid::-webkit-scrollbar {
+    height: 6px;
+}
+
+.projects-grid::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.projects-grid::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, #00d4aa, #00a0ff);
+    border-radius: 3px;
+}
+
+/* Performance optimizations for mobile */
+@media (max-width: 768px) {
+    .geometric-shape {
+        animation-duration: 8s;
+        will-change: transform;
+    }
+    
+    .project-card {
+        will-change: transform;
+    }
+    
+    .hero-text .highlight {
+        will-change: auto;
+    }
+}
+
+/* Fix z-index issues */
+.mobile-nav {
+    z-index: 1000;
+}
+
+.mobile-menu-toggle {
+    z-index: 1001;
+}
+
+.scroll-progress {
+    z-index: 9999;
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    .geometric-shape,
+    .hero-text .highlight {
+        animation: none;
+    }
+    
+    .project-card,
+    .social-link,
+    .work-button {
+        transition: none;
+    }
+}
+
+/* Print styles */
+@media print {
+    .mobile-menu-toggle,
+    .mobile-nav,
+    .scroll-progress,
+    .geometric-shape {
+        display: none !important;
+    }
+    
+    .hero,
+    .about,
+    .credentials,
+    .projects,
+    .contact {
+        page-break-inside: avoid;
+        padding: 20px 0;
+    }
+    
+    .container {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+}
