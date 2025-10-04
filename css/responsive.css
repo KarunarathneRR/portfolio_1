@@ -98,6 +98,64 @@ img, video, iframe {
     }
 }
 
+/* Large Laptops (1200px-1439px) */
+@media (min-width: 1200px) and (max-width: 1439px) {
+    .container {
+        padding: 0 50px;
+    }
+    
+    .hero-text h1 {
+        font-size: 3.8rem;
+    }
+    
+    .hero-text .subtitle {
+        font-size: 1.3rem;
+    }
+    
+    .geometric-shape {
+        width: 420px;
+        height: 420px;
+    }
+    
+    .about-content {
+        gap: 60px;
+    }
+    
+    .project-card {
+        width: 320px;
+        min-width: 320px;
+    }
+}
+
+/* Medium Laptops (1025px-1199px) */
+@media (min-width: 1025px) and (max-width: 1199px) {
+    .container {
+        padding: 0 40px;
+    }
+    
+    .hero-text h1 {
+        font-size: 3.4rem;
+    }
+    
+    .hero-text .subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .geometric-shape {
+        width: 360px;
+        height: 360px;
+    }
+    
+    .about-content {
+        gap: 50px;
+    }
+    
+    .project-card {
+        width: 300px;
+        min-width: 300px;
+    }
+}
+
 /* Tablet Styles */
 @media (max-width: 1024px) {
     .container {
@@ -338,6 +396,81 @@ img, video, iframe {
         width: 45px;
         height: 45px;
         font-size: 1.1rem;
+    }
+}
+
+/* Large Mobile (600px-767px) */
+@media (min-width: 600px) and (max-width: 767px) {
+    .container {
+        padding: 0 25px;
+    }
+    
+    .nav-menu {
+        display: none;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .hero-text h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-text .subtitle {
+        font-size: 1rem;
+    }
+    
+    .geometric-shape {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .project-card {
+        width: 280px;
+        min-width: 280px;
+    }
+}
+
+/* Medium Mobile (481px-599px) */
+@media (min-width: 481px) and (max-width: 599px) {
+    .container {
+        padding: 0 20px;
+    }
+    
+    .hero-text h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero-text .subtitle {
+        font-size: 0.95rem;
+    }
+    
+    .geometric-shape {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .project-card {
+        width: calc(100vw - 60px);
+        min-width: calc(100vw - 60px);
+    }
+    
+    .work-button {
+        padding: 12px 24px;
+        font-size: 0.9rem;
     }
 }
 
@@ -805,18 +938,116 @@ img, video, iframe {
     }
 }
 
+/* Ultra Large Screens (4K - 2560px+) */
+@media (min-width: 2560px) {
+    .container {
+        max-width: 1800px;
+        padding: 0 120px;
+    }
+    
+    .hero-text h1 {
+        font-size: 5.5rem;
+        line-height: 1.1;
+    }
+    
+    .hero-text .subtitle {
+        font-size: 1.8rem;
+        margin-bottom: 50px;
+    }
+    
+    .geometric-shape {
+        width: 600px;
+        height: 600px;
+    }
+    
+    .about-image {
+        width: 400px;
+        height: 500px;
+    }
+    
+    .project-card {
+        width: 420px;
+        min-width: 420px;
+    }
+    
+    .work-button {
+        padding: 20px 40px;
+        font-size: 1.2rem;
+    }
+    
+    .social-link {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+}
+
+/* Large 4K Screens (1920px-2559px) */
+@media (min-width: 1920px) and (max-width: 2559px) {
+    .container {
+        max-width: 1600px;
+        padding: 0 100px;
+    }
+    
+    .hero-text h1 {
+        font-size: 5rem;
+        line-height: 1.1;
+    }
+    
+    .hero-text .subtitle {
+        font-size: 1.6rem;
+        margin-bottom: 45px;
+    }
+    
+    .geometric-shape {
+        width: 550px;
+        height: 550px;
+    }
+    
+    .about-image {
+        width: 360px;
+        height: 450px;
+    }
+    
+    .project-card {
+        width: 380px;
+        min-width: 380px;
+    }
+    
+    .work-button {
+        padding: 18px 36px;
+        font-size: 1.1rem;
+    }
+}
+
 /* Ultra-wide screen optimizations */
-@media (min-width: 1600px) {
+@media (min-width: 1600px) and (max-width: 1919px) {
     .container {
         max-width: 1400px;
+        padding: 0 80px;
     }
     
     .hero-text h1 {
         font-size: 4.5rem;
     }
     
+    .hero-text .subtitle {
+        font-size: 1.4rem;
+        margin-bottom: 40px;
+    }
+    
     .geometric-shape {
         width: 500px;
         height: 500px;
+    }
+    
+    .about-image {
+        width: 340px;
+        height: 420px;
+    }
+    
+    .project-card {
+        width: 360px;
+        min-width: 360px;
     }
 }

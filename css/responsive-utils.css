@@ -2,6 +2,67 @@
    RESPONSIVE UTILITIES
    ================================ */
 
+/* High DPI/Retina Display Optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .hero-text .highlight {
+        background-size: 200% 200%;
+    }
+    
+    .geometric-shape {
+        border-width: 2px;
+    }
+    
+    .project-card {
+        border-width: 2px;
+    }
+    
+    .social-link {
+        border-width: 2px;
+    }
+}
+
+/* Ultra-wide screens (21:9 aspect ratio) */
+@media (min-aspect-ratio: 21/9) and (min-width: 1920px) {
+    .container {
+        max-width: 1600px;
+    }
+    
+    .hero-content {
+        grid-template-columns: 1.5fr 1fr;
+        gap: 100px;
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr 2fr;
+        gap: 80px;
+    }
+    
+    .credentials-grid {
+        grid-template-columns: 1fr 2fr;
+        gap: 80px;
+    }
+}
+
+/* Foldable devices and narrow screens */
+@media (max-width: 280px) and (max-height: 653px) {
+    .hero {
+        padding-top: 60px;
+    }
+    
+    .geometric-shape {
+        display: none;
+    }
+    
+    .hero-visual {
+        display: none;
+    }
+    
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
 /* Viewport height calculation for mobile browsers */
 :root {
     --vh: 1vh;
@@ -339,5 +400,124 @@
     
     .print-no-break {
         page-break-inside: avoid;
+    }
+}
+
+/* ================================
+   COMPREHENSIVE SCREEN SIZE SUPPORT
+   ================================ */
+
+/* Smartwatch and tiny displays (below 240px) */
+@media (max-width: 240px) {
+    * {
+        font-size: 10px !important;
+    }
+    
+    .container {
+        padding: 0 2px;
+    }
+    
+    .hero-text h1 {
+        font-size: 0.8rem !important;
+    }
+    
+    .work-button,
+    .social-link {
+        display: none;
+    }
+    
+    .geometric-shape,
+    .about-image {
+        display: none;
+    }
+}
+
+/* Landscape orientation on mobile devices */
+@media (max-height: 500px) and (orientation: landscape) and (max-width: 1024px) {
+    .hero {
+        padding-top: 50px;
+        min-height: 100vh;
+    }
+    
+    .hero-content {
+        grid-template-columns: 1.2fr 1fr;
+        gap: 20px;
+        align-items: center;
+    }
+    
+    .hero-visual {
+        height: 300px;
+    }
+    
+    .geometric-shape {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .about-content,
+    .credentials-grid {
+        grid-template-columns: 1fr 1.5fr;
+        gap: 30px;
+    }
+}
+
+/* Extra large displays (8K and beyond) */
+@media (min-width: 3840px) {
+    .container {
+        max-width: 2400px;
+        padding: 0 200px;
+    }
+    
+    .hero-text h1 {
+        font-size: 8rem;
+    }
+    
+    .geometric-shape {
+        width: 800px;
+        height: 800px;
+    }
+    
+    .project-card {
+        width: 500px;
+        min-width: 500px;
+    }
+    
+    .social-link {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+    }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .geometric-shape {
+        animation: none !important;
+    }
+    
+    .hero-text .highlight {
+        animation: none !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .work-button,
+    .project-card,
+    .social-link {
+        border-width: 3px;
+        border-style: solid;
+    }
+    
+    .hero-text .highlight {
+        background: none;
+        color: inherit;
+        text-decoration: underline;
     }
 }
