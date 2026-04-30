@@ -8,10 +8,15 @@ class SectionLoader {
             { id: 'header-container', file: 'sections/header.html' },
             { id: 'hero-container', file: 'sections/hero.html' },
             { id: 'about-container', file: 'sections/about.html' },
-            { id: 'credentials-container', file: 'sections/credentials.html' },
+            { id: 'skills-container', file: 'sections/skills.html' },
             { id: 'projects-container', file: 'sections/projects.html' },
-            { id: 'contact-container', file: 'sections/contact.html' }
+            { id: 'certifications-container', file: 'sections/certifications.html' },
+            { id: 'goals-container', file: 'sections/goals.html' },
+            { id: 'contact-container', file: 'sections/contact.html' },
+            { id: 'footer-container', file: 'sections/footer.html' }
         ];
+
+        this.bindProjectsToggle();
     }
 
     async loadSection(section) {
@@ -42,10 +47,9 @@ class SectionLoader {
         const successCount = results.filter(result => result).length;
         console.log(`Loaded ${successCount} out of ${this.sections.length} sections`);
         
-        // Initialize main functionality after all sections are loaded
-        if (successCount === this.sections.length) {
-            this.initializeApp();
-        }
+        // Initialize main functionality after section loading completes,
+        // even if one section failed, so the rest of the page still works.
+        this.initializeApp();
     }
 
     initializeApp() {
@@ -73,7 +77,10 @@ class SectionLoader {
         
         // Re-initialize smooth scrolling
         this.initializeSmoothScrolling();
-        
+
+        // Keep floating actions clear of the footer area
+        this.initializeFloatingCvButton();
+
         console.log('App initialized successfully');
     }
 
@@ -122,6 +129,102 @@ class SectionLoader {
                 }
             });
         });
+    }
+
+    bindProjectsToggle() {
+        if (window.toggleOtherProjects) {
+            return;
+        }
+
+        const setupOtherProjectsRows = (otherProjects) => {
+            if (!otherProjects || otherProjects.dataset.rowsReady === 'true') {
+                return;
+            }
+
+            const cards = Array.from(otherProjects.querySelectorAll('.other-project-card'));
+            if (!cards.length) {
+                return;
+            }
+
+            const topRowCards = cards.filter((_, index) => index % 2 === 0);
+            const bottomRowCards = cards.filter((_, index) => index % 2 !== 0);
+
+            const buildRow = (rowCards, directionClass) => {
+                const row = document.createElement('div');
+                row.className = 'other-projects-row';
+
+                const track = document.createElement('div');
+                track.className = `other-projects-track ${directionClass}`;
+
+                rowCards.concat(rowCards).forEach((card) => {
+                    track.appendChild(card.cloneNode(true));
+                });
+
+                row.appendChild(track);
+                return row;
+            };
+
+            otherProjects.innerHTML = '';
+            otherProjects.appendChild(buildRow(topRowCards, 'slide-left'));
+            otherProjects.appendChild(buildRow(bottomRowCards, 'slide-right'));
+            otherProjects.dataset.rowsReady = 'true';
+        };
+
+        window.toggleOtherProjects = () => {
+            const seeMoreBtn = document.getElementById('see-more-btn');
+            const otherProjects = document.getElementById('other-projects');
+
+            if (!seeMoreBtn || !otherProjects) {
+                return;
+            }
+
+            const isHidden = otherProjects.style.display === 'none' || otherProjects.style.display === '';
+
+            if (isHidden) {
+                setupOtherProjectsRows(otherProjects);
+                otherProjects.style.display = 'grid';
+                otherProjects.style.opacity = '1';
+                otherProjects.style.transform = 'translateY(0)';
+                seeMoreBtn.innerHTML = 'Show Less <i class="fas fa-chevron-up"></i>';
+
+                setTimeout(() => {
+                    otherProjects.classList.add('animate');
+                }, 50);
+            } else {
+                otherProjects.style.display = 'none';
+                otherProjects.style.opacity = '0';
+                otherProjects.style.transform = 'translateY(20px)';
+                seeMoreBtn.innerHTML = 'See All Projects <i class="fas fa-chevron-down"></i>';
+                otherProjects.classList.remove('animate');
+            }
+        };
+    }
+
+    initializeFloatingCvButton() {
+        const floatingCvBtn = document.querySelector('.floating-cv-wrap');
+        const footer = document.querySelector('.footer');
+
+        if (!floatingCvBtn || !footer || floatingCvBtn.dataset.footerAware === 'true') {
+            return;
+        }
+
+        const updateFloatingCvPosition = () => {
+            const footerRect = footer.getBoundingClientRect();
+            const baseOffset = window.innerWidth <= 768 ? 16 : 24;
+            const overlap = window.innerHeight - footerRect.top + baseOffset;
+
+            if (overlap > 0) {
+                floatingCvBtn.style.setProperty('--footer-offset', `${overlap}px`);
+            } else {
+                floatingCvBtn.style.setProperty('--footer-offset', '0px');
+            }
+        };
+
+        window.addEventListener('scroll', updateFloatingCvPosition, { passive: true });
+        window.addEventListener('resize', updateFloatingCvPosition);
+        updateFloatingCvPosition();
+
+        floatingCvBtn.dataset.footerAware = 'true';
     }
 }
 
