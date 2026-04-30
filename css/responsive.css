@@ -234,6 +234,26 @@ img, video, iframe {
         padding: 0 20px;
     }
 
+    .other-projects-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+        overflow: visible;
+    }
+
+    .other-projects-column {
+        overflow: visible;
+        min-height: auto;
+        mask-image: none;
+        -webkit-mask-image: none;
+    }
+
+    .other-projects-track,
+    .other-projects-grid.animate .other-projects-track.slide-up,
+    .other-projects-grid.animate .other-projects-track.slide-down {
+        animation: none;
+        transform: none;
+    }
+
     .nav-container {
         padding: 0 20px;
     }
@@ -396,6 +416,57 @@ img, video, iframe {
         width: 45px;
         height: 45px;
         font-size: 1.1rem;
+    }
+
+    .contact-card {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px 12px;
+    }
+
+    .contact-card i {
+        margin-bottom: 0;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .contact-card h3 {
+        margin-bottom: 0;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .contact-card p {
+        width: 100%;
+        margin-top: 4px;
+    }
+}
+
+@media (max-width: 500px) {
+    .contact-card {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        column-gap: 12px;
+        row-gap: 6px;
+    }
+
+    .contact-card i {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .contact-card h3 {
+        grid-column: 2;
+        grid-row: 1;
+        white-space: nowrap;
+    }
+
+    .contact-card p {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        width: auto;
     }
 }
 
@@ -1049,5 +1120,27 @@ img, video, iframe {
     .project-card {
         width: 360px;
         min-width: 360px;
+    }
+}
+
+/* Center Timeline Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+    .center-timeline::after {
+        left: 20px;
+    }
+    .center-timeline .timeline-item {
+        width: 100%;
+        padding-left: 60px;
+        padding-right: 10px;
+    }
+    .center-timeline .timeline-item.right {
+        left: 0;
+    }
+    .center-timeline .timeline-item.left {
+        text-align: left;
+    }
+    .center-timeline .timeline-dot {
+        left: 12px !important;
+        right: auto !important;
     }
 }
